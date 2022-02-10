@@ -1,6 +1,7 @@
 package com.dio.simuladordepartidas.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dio.simuladordepartidas.databinding.MatchItemBinding;
 import com.dio.simuladordepartidas.domain.Match;
+import com.dio.simuladordepartidas.ui.DetailActivity;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
     @Override
     public MatchesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        MatchItemBinding binding = MatchItemBinding.inflate(layoutInflater,parent,false);
+        MatchItemBinding binding = MatchItemBinding.inflate(layoutInflater, parent, false);
         return new ViewHolder(binding);
     }
 
@@ -52,10 +54,17 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
         holder.binding.textViewHomeTeam.setText(match.getHomeTime().getName());
         Glide.with(context).load(match.getAwayTeam().getImage()).circleCrop().into(holder.binding.imageViewAwayTeam);
         holder.binding.textViewNameAwayTeam.setText(match.getAwayTeam().getName());
-        if(match.getHomeTime().getScore()!=null){
+
+        if (match.getHomeTime().getScore() != null) {
             holder.binding.textViewScoreHomeTeam.setText(String.valueOf(match.getHomeTime().getScore()));
             holder.binding.textViewScoreAwayTeam.setText(String.valueOf(match.getAwayTeam().getScore()));
         }
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra(DetailActivity.Extras.MATCH, match);
+            context.startActivity(intent);
+        });
     }
 
     @Override
