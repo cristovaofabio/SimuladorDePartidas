@@ -5,4 +5,5 @@
     <string name="txt_image_home_team">Imagem do time mandante</string>
     <string name="txt_image_away_team">Imagem do time visitante</string>
     <string name="txt_versus">x</string>
+    <string name="error_api">Erro inesperado!</string>
 </resources>

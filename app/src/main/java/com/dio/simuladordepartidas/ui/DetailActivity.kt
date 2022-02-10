@@ -1,4 +1,4 @@
-package com.dio.simuladordepartidas
+package com.dio.simuladordepartidas.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
